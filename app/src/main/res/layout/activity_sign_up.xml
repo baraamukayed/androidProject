@@ -19,6 +19,7 @@
 
         <!--    هادي المفروض تكون button بوديك عالساين ان مش textview-->
         <TextView
+            android:id="@+id/signInTV"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="Sign in"
@@ -27,10 +28,13 @@
             android:layout_marginLeft="30dp"
             android:gravity="left"
             android:layout_gravity="left"
+            android:onClick="onClickSI"
+            android:clickable="true"
             />
 
 
         <TextView
+            android:id="@+id/exitTV"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="x"
@@ -38,6 +42,8 @@
             android:textColor="#000"
             android:gravity="right"
             android:layout_gravity="right"
+            android:onClick="onClickExit"
+            android:clickable="true"
             />
     </LinearLayout>
 

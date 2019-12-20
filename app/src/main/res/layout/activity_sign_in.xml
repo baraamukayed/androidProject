@@ -17,6 +17,7 @@
         android:layout_marginTop="36dp"
         >
         <TextView
+            android:id="@+id/signUpTV"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="Sign up"
@@ -25,10 +26,13 @@
             android:layout_marginLeft="30dp"
             android:gravity="left"
             android:layout_gravity="left"
+            android:onClick="onClickSU"
+            android:clickable="true"
             />
 
 
         <TextView
+            android:id="@+id/exitTV"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="x"
@@ -36,6 +40,8 @@
             android:textColor="#000"
             android:gravity="right"
             android:layout_gravity="right"
+            android:onClick="onClickExite"
+            android:clickable="true"
             />
     </LinearLayout>
 
