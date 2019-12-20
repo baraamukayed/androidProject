@@ -82,7 +82,6 @@
 
         />
 
-    <!--    هادي المفروض تكون button مش textview-->
     <TextView
 
         android:layout_width="250dp"
