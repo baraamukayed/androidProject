@@ -83,14 +83,16 @@
         />
 
     <TextView
-
+        android:id="@+id/forgetPasswordTV"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Forget password?"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginTop="40dp"
-        android:textColor="#000"/>
+        android:textColor="#000"
+        android:onClick="onClickForget"
+        android:clickable="true"/>
 
     <!--    <View-->
     <!--        android:layout_width="wrap_content"-->

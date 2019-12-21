@@ -24,9 +24,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class signInActivity extends AppCompatActivity {
-    EditText emailEt , passwordEt;
+    EditText emailEt , passwordEt ;
     Button signInBtn;
-    TextView signUpTV , exitTV;
+    TextView signUpTV , exitTV ,forgetPasswordTV;
     FirebaseAuth mAuth;
 
 
@@ -132,4 +132,18 @@ public class signInActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void onClickForget(View v) {
+        forgetPasswordTV = findViewById(R.id.forgetPasswordTV);
+        forgetPasswordTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(signInActivity.this , forgetPasswordActivity.class);
+                startActivity(intent);
+
+            }
+        });
+    }
+
+
 }
