@@ -5,13 +5,13 @@ public class Note {
     String id;
     String nootbook_id ;
     String desc;
-    long createdAt;
+    String createdAt;
     long lastUpdate;
 
 
     public Note(){}
 
-    public Note(String id, String nootbook_id, String desc, long createdAt, long lastUpdate) {
+    public Note(String id, String nootbook_id, String desc, String createdAt, long lastUpdate) {
         this.id = id;
         this.nootbook_id = nootbook_id;
         this.desc = desc;
@@ -43,11 +43,11 @@ public class Note {
         this.desc = desc;
     }
 
-    public long getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(long createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 

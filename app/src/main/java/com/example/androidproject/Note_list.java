@@ -42,7 +42,7 @@ public class Note_list extends AppCompatActivity {
 
 
 
-        initData();
+        getData();
 
 
         notesList_rv = findViewById(R.id.notesList_rv);
@@ -51,7 +51,7 @@ public class Note_list extends AppCompatActivity {
         notesList_rv.setAdapter(noteAdapter);
     }
 
-    private void initData() {
+    private void getData() {
         FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Notebook").child("Note")
                 .addValueEventListener(new ValueEventListener() {
                     @Override

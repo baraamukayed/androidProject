@@ -1,6 +1,7 @@
 package com.example.androidproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,14 @@ public class NotebookAdapter extends RecyclerView.Adapter<NotebookAdapter.Notebo
 
         public void setData(Notebook notebook) {
             notebookName.setText(notebook.getTitle());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context , special_notebook.class);
+                    intent.putExtra("id",notebook.getId().toString());
+                    context.startActivity(intent);
+                }
+            });
 //            notebookCreatedAt.setText(notebook.getCreatedAt()+"");
 
         }

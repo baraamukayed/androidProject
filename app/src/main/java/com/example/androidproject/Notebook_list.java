@@ -28,7 +28,6 @@ public class Notebook_list extends AppCompatActivity {
     RecyclerView notebooksList_rv;
     NotebookAdapter notebookAdapter;
     ImageButton addNotebookIB ,returnIB;
-    LinearLayout linearID;
 
     List<Notebook> notebookList  = new ArrayList<>();
 
@@ -87,20 +86,6 @@ public class Notebook_list extends AppCompatActivity {
 
 
     }
-
-    public void onClickNoteBook(View v) {
-        linearID = findViewById(R.id.linearID);
-        linearID.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Notebook_list.this , special_notebook.class);
-//                intent.putExtra(notebookList.get(getAdapterPosition).getTitle());
-                startActivity(intent);
-
-            }
-        });
-    }
-
 
 
 }

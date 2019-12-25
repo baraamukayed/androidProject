@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddNote"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/cancelTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cancel"
+        android:layout_gravity="right"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:onClick="onClickCancel"
+        android:clickable="true"/>
+
+
+    <EditText
+        android:layout_marginTop="200dp"
+        android:id="@+id/noteET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:hint="Add Note for this Notebook"
+        />
+
+    <Button
+        android:id="@+id/addBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="50dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/roundedbutton"
+        />
+
+
+
+
+
+
+</LinearLayout>
