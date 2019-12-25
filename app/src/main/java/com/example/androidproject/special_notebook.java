@@ -3,6 +3,8 @@ package com.example.androidproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,8 +29,10 @@ public class special_notebook extends AppCompatActivity {
 
     TextView notebookNameTV;
 
-    ImageButton returnIB ,addNoteIB;
-
+    ImageButton returnnIB ,addNoteIB;
+    List<Note> noteList = new ArrayList<>();
+    RecyclerView notesList_rv;
+    NoteAdapter noteAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +42,40 @@ public class special_notebook extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        returnnIB = findViewById(R.id.returnnIB);
+        returnnIB.setOnClickListener(v->{
+            Intent intent = new Intent(special_notebook.this , Notebook_list.class);
+            startActivity(intent);
+        });
+
+
         String id = getIntent().getExtras().getString("id");
+
+        FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Notebook").child(id).child("Note")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        noteList.clear();
+                        for(DataSnapshot snapshot: dataSnapshot.getChildren() ){
+
+                            Note note = snapshot.getValue(Note.class);
+                            noteList.add(note);
+
+                        }
+                        noteAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+        notesList_rv = findViewById(R.id.notesList_rv);
+        notesList_rv.setLayoutManager(new LinearLayoutManager(this));
+        noteAdapter = new NoteAdapter(this ,noteList);
+        notesList_rv.setAdapter(noteAdapter);
 
         addNoteIB = findViewById(R.id.addNoteIB);
         addNoteIB.setOnClickListener(v->{
@@ -70,6 +107,7 @@ public class special_notebook extends AppCompatActivity {
 
 
     }
+
 
     }
 

@@ -40,15 +40,17 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteVh> {
     }
 
     class NoteVh extends RecyclerView.ViewHolder{
-        TextView  noteDesc;
+        TextView  noteDesc , noteCreatedAtTv;
         public NoteVh(@NonNull View itemView) {
             super(itemView);
-            noteDesc = itemView.findViewById(R.id.noteDesc);
+            noteDesc = itemView.findViewById(R.id.noteDescTv);
+            noteCreatedAtTv = itemView.findViewById(R.id.noteCreatedAtTv);
 
         }
 
         public void setData(Note note) {
             noteDesc.setText(note.getDesc());
+            noteCreatedAtTv.setText(note.getCreatedAt()+"");
 
         }
     }
