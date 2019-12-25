@@ -17,7 +17,6 @@
         android:layout_marginTop="36dp"
         >
 
-        <!--    هادي المفروض تكون button بوديك عالساين ان مش textview-->
         <TextView
             android:id="@+id/signInTV"
             android:layout_width="250dp"

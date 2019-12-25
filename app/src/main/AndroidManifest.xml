@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".special_notebook"></activity>
+        <activity android:name=".Note_list" />
+        <activity android:name=".Notebook_list" />
         <activity android:name=".homeActivity" />
         <activity android:name=".splashActivity">
             <intent-filter>
@@ -23,7 +26,7 @@
         <activity android:name=".signInActivity" />
         <activity android:name=".signUpActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".addNoteBook"/>
+        <activity android:name=".addNoteBook" />
     </application>
 
 </manifest>

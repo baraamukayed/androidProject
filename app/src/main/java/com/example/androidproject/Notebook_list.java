@@ -11,8 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -23,57 +23,44 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class homeActivity extends AppCompatActivity {
-Button signOutBtn ,addNoteBookBtn ;
-TextView  showAllNotebooks ;
+public class Notebook_list extends AppCompatActivity {
+
     RecyclerView notebooksList_rv;
     NotebookAdapter notebookAdapter;
-    List<Notebook> notebookList  = new ArrayList<>();
+    ImageButton addNotebookIB ,returnIB;
+    LinearLayout linearID;
 
+    List<Notebook> notebookList  = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_notebook_list);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        addNoteBookBtn = findViewById(R.id.addNoteBookBtn);
-        addNoteBookBtn.setOnClickListener(v->{
-            Intent intent = new Intent(homeActivity.this , addNoteBook.class);
+        addNotebookIB = findViewById(R.id.addNotebookIB);
+        addNotebookIB.setOnClickListener(v->{
+            Intent intent = new Intent(Notebook_list.this , addNoteBook.class);
             startActivity(intent);
         });
 
-
-        signOutBtn = findViewById(R.id.signOutBtn);
-        signOutBtn.setOnClickListener(v->{
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(homeActivity.this , signInActivity.class);
+        returnIB = findViewById(R.id.returnIB);
+        returnIB.setOnClickListener(v->{
+            Intent intent = new Intent(Notebook_list.this , homeActivity.class);
             startActivity(intent);
         });
 
         getData();
 
         notebooksList_rv = findViewById(R.id.notebooksList_rv);
-//        RecyclerView.LayoutManager layoutManager= new GridLayoutManager(this,3);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        notebooksList_rv.setLayoutManager(linearLayoutManager);
+        RecyclerView.LayoutManager layoutManager= new GridLayoutManager(this,3);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        notebooksList_rv.setLayoutManager(layoutManager);
         notebookAdapter = new NotebookAdapter(this ,notebookList);
         notebooksList_rv.setAdapter(notebookAdapter);
-
     }
 
-    public void onClickShowAll(View v) {
-        showAllNotebooks = findViewById(R.id.showAllNotebooks);
-        showAllNotebooks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(homeActivity.this , Notebook_list.class);
-                startActivity(intent);
-
-            }
-        });
-    }
 
     private void getData() {
         FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Notebook")
@@ -100,5 +87,20 @@ TextView  showAllNotebooks ;
 
 
     }
+
+    public void onClickNoteBook(View v) {
+        linearID = findViewById(R.id.linearID);
+        linearID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Notebook_list.this , special_notebook.class);
+//                intent.putExtra(notebookList.get(getAdapterPosition).getTitle());
+                startActivity(intent);
+
+            }
+        });
+    }
+
+
 
 }

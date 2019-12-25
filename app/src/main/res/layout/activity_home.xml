@@ -24,6 +24,7 @@
         android:layout_gravity="left"
         android:gravity="left"
         android:layout_marginLeft="15dp"
+        android:textStyle="bold"
         android:textColor="#000"
 
         />
@@ -51,7 +52,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="20dp">
 
     <TextView
         android:layout_width="170dp"
@@ -65,6 +66,7 @@
         />
 
     <TextView
+        android:id="@+id/showAllNotebooks"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Show All"
@@ -72,37 +74,14 @@
         android:gravity="right"
         android:textSize="17dp"
         android:textColor="#7B1E58"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="2dp"
+        android:onClick="onClickShowAll"
+        android:clickable="true"/>
         />
 
 
 </LinearLayout>
-
-    <Button
-        android:layout_width="80dp"
-        android:layout_height="100dp"
-        android:id="@+id/addNoteBookBtn"
-        android:background="@drawable/addnote"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:shadowColor="#fafafa"
-        android:layout_gravity="center"
-        android:gravity="center"
-        />
-    <TextView
-        android:id="@+id/createNoteBook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Notebook"
-        android:textColor="#7B1E58"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-
-        />
-
 
 
     <LinearLayout
@@ -110,6 +89,56 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:id="@+id/addNoteBookBtn"
+        android:background="@drawable/addnote"
+        android:layout_marginLeft="25dp"
+        android:shadowColor="#fafafa"
+        android:layout_gravity="left"
+        android:gravity="left"
+        />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Notebook"
+                android:textSize="12dp"
+                android:textColor="#7B1E58"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
+                />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notebooksList_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="25dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
 
         <TextView
             android:layout_width="170dp"
@@ -130,7 +159,7 @@
             android:gravity="right"
             android:textSize="17dp"
             android:textColor="#7B1E58"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="2dp"
             />
 

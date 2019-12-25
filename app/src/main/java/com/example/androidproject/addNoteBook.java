@@ -1,27 +1,29 @@
 package com.example.androidproject;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class addNoteBook extends AppCompatActivity {
 
     Button saveBtn;
     EditText noteBookET;
+    TextView cancelTV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,31 +35,37 @@ public class addNoteBook extends AppCompatActivity {
         saveBtn = findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(v->{
 
-            notebook noteBook = new notebook();
-            noteBook.setCreatedAt(new Date().getTime());
-            noteBook.setTitle(noteBookET.toString());
+            Notebook noteBook = new Notebook();
+//            Timestamp timestamp = new Timestamp(new Date());
+//            Log.e("time" , timestamp.toString());
+            Date c = Calendar.getInstance().getTime();
+            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+            String formattedDate = df.format(c);
+            noteBook.setCreatedAt(formattedDate);
+            noteBook.setTitle(noteBookET.getText().toString());
 
             String id = FirebaseDatabase.getInstance().getReference().child("Notebook").push().getKey();
             noteBook.setId(id);
-            FirebaseDatabase.getInstance().getReference().child("Notebook").child(id).setValue(noteBook);
-
+            FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Notebook").child(noteBook.genarateID()).setValue(noteBook);
 
 
             Intent intent = new Intent(addNoteBook.this , homeActivity.class);
             startActivity(intent);
         });
 
-        FirebaseDatabase.getInstance().getReference().child("Notebook").child("-93bQdqiEzTYOI7Qihu4PXMzozgK2")
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Long createdAt = dataSnapshot.child("createdAt").getValue(Long.class);
-                        String id = dataSnapshot.child("id").getValue(String.class);
-                        String title = dataSnapshot.child("title").getValue(String.class);
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {    }
-                });
 
+
+    }
+
+    public void onClickCancel(View v) {
+        cancelTV = findViewById(R.id.cancelTV);
+        cancelTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(addNoteBook.this , homeActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 }

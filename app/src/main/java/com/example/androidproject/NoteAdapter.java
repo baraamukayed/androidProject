@@ -1,5 +1,6 @@
 package com.example.androidproject;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.BookVh> {
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteVh> {
 
     Context context ;
     List<Note> notes;
@@ -23,13 +24,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.BookVh> {
 
     @NonNull
     @Override
-    public BookVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view =LayoutInflater.from(context).inflate(R.layout.row_note , parent , false);
-        return new BookVh(view);
+    public NoteVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view =LayoutInflater.from(context).inflate(R.layout.activity_row_note , parent , false);
+        return new NoteVh(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookVh holder, int position) {
+    public void onBindViewHolder(@NonNull NoteVh holder, int position) {
         holder.setData(notes.get(position));
     }
 
@@ -38,19 +39,17 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.BookVh> {
         return notes.size();
     }
 
-    class BookVh extends RecyclerView.ViewHolder{
-        TextView  note_name     , note_desc , note_date;
-        public BookVh(@NonNull View itemView) {
+    class NoteVh extends RecyclerView.ViewHolder{
+        TextView  noteDesc;
+        public NoteVh(@NonNull View itemView) {
             super(itemView);
-            note_name = itemView.findViewById(R.id.note_name);
-            note_desc = itemView.findViewById(R.id.note_desc);
-            note_date = itemView.findViewById(R.id.note_date);
+            noteDesc = itemView.findViewById(R.id.noteDesc);
+
         }
 
         public void setData(Note note) {
-            note_name.setText(note.getNotebookID());
-            note_date.setText(note.getCreatedAt()+"");
-            note_desc.setText(note.getDesc());
+            noteDesc.setText(note.getDesc());
+
         }
     }
 }

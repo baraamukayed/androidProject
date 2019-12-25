@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class forgetPasswordActivity extends AppCompatActivity {
 
     ImageButton returnIB;
+    Button recoverPasswordBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +25,17 @@ public class forgetPasswordActivity extends AppCompatActivity {
         returnIB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(forgetPasswordActivity.this , signInActivity.class);
+                Intent intent = new Intent(forgetPasswordActivity.this, signInActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        recoverPasswordBtn = findViewById(R.id.recoverPasswordBtn);
+        recoverPasswordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(forgetPasswordActivity.this, checkMailActivity.class);
                 startActivity(intent);
 
             }

@@ -1,8 +1,9 @@
 package com.example.androidproject;
 
 public class Note {
+
     String id;
-    String notebookID;
+    String nootbook_id ;
     String desc;
     long createdAt;
     long lastUpdate;
@@ -10,9 +11,9 @@ public class Note {
 
     public Note(){}
 
-    public Note(String id,String notebookID, String desc, long createdAt, long lastUpdate) {
+    public Note(String id, String nootbook_id, String desc, long createdAt, long lastUpdate) {
         this.id = id;
-        this.notebookID = notebookID;
+        this.nootbook_id = nootbook_id;
         this.desc = desc;
         this.createdAt = createdAt;
         this.lastUpdate = lastUpdate;
@@ -26,12 +27,12 @@ public class Note {
         this.id = id;
     }
 
-    public String getNotebookID() {
-        return notebookID;
+    public String getNootbook_id() {
+        return nootbook_id;
     }
 
-    public void setNotebookID(String notebookID) {
-        this.notebookID = notebookID;
+    public void setNootbook_id(String nootbook_id) {
+        this.nootbook_id = nootbook_id;
     }
 
     public String getDesc() {
