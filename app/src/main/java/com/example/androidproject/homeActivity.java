@@ -26,9 +26,14 @@ import java.util.List;
 public class homeActivity extends AppCompatActivity {
 Button signOutBtn ,addNoteBookBtn ;
 TextView  showAllNotebooks ;
-    RecyclerView notebooksList_rv;
+    RecyclerView notebooksList_rv , notesAndBooksList_rv;
     NotebookAdapter notebookAdapter;
+    NoteAndNoteBookAdapter noteAndNoteBookAdapter;
+    NoteAdapter noteAdapter;
     List<Notebook> notebookList  = new ArrayList<>();
+    List<Note> noteList  = new ArrayList<>();
+
+
 
 
     @Override
@@ -52,7 +57,9 @@ TextView  showAllNotebooks ;
             startActivity(intent);
         });
 
-        getData();
+        /// get data to Notebook
+
+        getData1();
 
         notebooksList_rv = findViewById(R.id.notebooksList_rv);
 //        RecyclerView.LayoutManager layoutManager= new GridLayoutManager(this,3);
@@ -60,6 +67,16 @@ TextView  showAllNotebooks ;
         notebooksList_rv.setLayoutManager(linearLayoutManager);
         notebookAdapter = new NotebookAdapter(this ,notebookList);
         notebooksList_rv.setAdapter(notebookAdapter);
+
+        // get data to Notes and Notebook
+
+        getData2();
+        notesAndBooksList_rv =findViewById(R.id.notesAndBooksList_rv);
+        notesAndBooksList_rv.setLayoutManager(new LinearLayoutManager(this));
+        noteAndNoteBookAdapter = new NoteAndNoteBookAdapter(this  , noteList);
+        notesAndBooksList_rv.setAdapter(noteAndNoteBookAdapter);
+
+
 
     }
 
@@ -75,7 +92,7 @@ TextView  showAllNotebooks ;
         });
     }
 
-    private void getData() {
+    private void getData1() {
         FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Notebook")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -97,6 +114,11 @@ TextView  showAllNotebooks ;
 
                     }
                 });
+
+
+    }
+
+    private void getData2() {
 
 
     }
